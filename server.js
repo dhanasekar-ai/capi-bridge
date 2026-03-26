@@ -35,6 +35,7 @@ app.post('/capi-lead', async (req, res) => {
     data: [{
       event_name: 'Lead',
       event_time: now,
+      event_id: crypto.randomUUID(),
       action_source: 'business_messaging',
       messaging_channel: 'whatsapp',
       user_data: {
