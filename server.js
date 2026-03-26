@@ -16,10 +16,20 @@ function hash(val) {
 
 app.post('/capi-lead', async (req, res) => {
   const contact = req.body;
+
+  // ADD THIS — shows exactly what JugaadX sends
+  console.log('JugaadX payload:', JSON.stringify(contact, null, 2));
+
   const clid  = contact.ctwa_clid;
   const phone = contact.phone_number;
   const email = contact.email;
   const now   = Math.floor(Date.now() / 1000);
+
+  // Skip if no clid — means it's not from a real ad click
+  if (!clid) {
+    console.log('No ctwa_clid found — skipping Meta call');
+    return res.json({ ok: false, reason: 'No ctwa_clid' });
+  }
 
   const payload = {
     data: [{
