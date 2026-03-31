@@ -58,5 +58,5 @@ app.post('/capi-lead', async (req, res) => {
   console.log('Meta response:', result);
   res.json({ ok: true, result });
 });
-
+app.get('/', (req, res) => res.send('OK'));
 app.listen(3000, () => console.log('CAPI bridge running on port 3000'));
