@@ -37,7 +37,8 @@ app.post('/capi-lead', async (req, res) => {
       ph: phone ? [hash(phone)] : [],
       ctwa_clid: clid,                    // ✅ inside
       page_id: '192812177248364'          // ✅ inside
-    }
+    },
+    page_id: "192812177248364"
   }]
 };
 
