@@ -26,19 +26,21 @@ app.post('/capi-lead', async (req, res) => {
   const now   = Math.floor(Date.now() / 1000);
 
   const payload = {
-    data: [{
-      event_name: 'LeadSubmitted',
-      event_time: now,
-      event_id: crypto.randomUUID(),
-      action_source: 'business_messaging',
-      messaging_channel: 'whatsapp',
-      user_data: {
-        ph: phone ? [hash(phone)] : []
-      },
-      ctwa_clid: clid,
-      page_id: '192812177248364'
-    }]
-  };
+  data: [{
+    event_name: 'LeadSubmitted',
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: crypto.randomUUID(),
+    action_source: 'business_messaging',
+    messaging_channel: 'whatsapp',
+
+    user_data: {
+      ph: phone ? [hash(phone)] : [],
+      ...(clid && { ctwa_clid: clid })   // ✅ ctwa_clid inside user_data
+    },
+
+    page_id: '192812177248364'  // ✅ ALWAYS hardcoded, never empty
+  }]
+};
 
   const url = `https://graph.facebook.com/v19.0/${DATASET_ID}/events?access_token=${ACCESS_TOKEN}`;
 
