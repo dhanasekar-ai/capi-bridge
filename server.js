@@ -33,8 +33,8 @@ app.post('/capi-lead', async (req, res) => {
       action_source: 'business_messaging',
       messaging_channel: 'whatsapp',
       user_data: {
-        ph: phone ? [hash(phone)] : [],
-      }
+        ph: phone ? [hash(phone)] : []
+      },
       ctwa_clid: clid,
       page_id: '192812177248364'
     }]
