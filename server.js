@@ -34,9 +34,9 @@ app.post('/capi-lead', async (req, res) => {
       messaging_channel: 'whatsapp',
       user_data: {
         ph: phone ? [hash(phone)] : [],
-        ...(clid && { ctwa_clid: clid }),
-        page_id: '192812177248364',
       }
+      ctwa_clid: clid,
+      page_id: '192812177248364'
     }]
   };
 
