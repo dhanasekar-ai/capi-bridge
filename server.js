@@ -27,7 +27,7 @@ app.post('/capi-lead', async (req, res) => {
 
   const payload = {
   data: [{
-    event_name: 'Lead',
+    event_name: 'LeadSubmitted',
     event_time: Math.floor(Date.now() / 1000),
     event_id: crypto.randomUUID(),
     action_source: 'business_messaging',
