@@ -27,18 +27,17 @@ app.post('/capi-lead', async (req, res) => {
 
   const payload = {
   data: [{
-    event_name: 'LeadSubmitted',
+    event_name: 'Lead',
     event_time: Math.floor(Date.now() / 1000),
     event_id: crypto.randomUUID(),
     action_source: 'business_messaging',
     messaging_channel: 'whatsapp',
-
     user_data: {
       ph: phone ? [hash(phone)] : [],
-      ctwa_clid: clid,                    // ✅ inside
-      page_id: '192812177248364'          // ✅ inside
-    },
-    page_id: "192812177248364"
+      ctwa_clid: clid,
+      page_id: '192812177248364'
+    }
+    // ❌ removed page_id from here
   }]
 };
 
